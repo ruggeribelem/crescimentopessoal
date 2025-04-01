@@ -1,0 +1,3474 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jornada de Crescimento Pessoal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #f8f9fa;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --text-color: #333333;
+            --text-light: #555555;
+            
+            /* Cores temáticas para cada aba */
+            --mindset-color: #8e44ad;
+            --routine-color: #2980b9;
+            --health-color: #27ae60;
+            --relationships-color: #e74c3c;
+            --study-color: #f39c12;
+            --spirituality-color: #16a085;
+            --motivation-color: #d35400;
+            --habits-color: #9b59b6;
+            --alchemist-color: #c27ba0;
+            --longevity-color: #1abc9c;
+
+            /* Cores para modo escuro */
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-text: #f0f0f0;
+            --dark-text-light: #cccccc;
+            --dark-header: linear-gradient(135deg, #1a1a2e, #16213e);
+            --dark-shadow: rgba(0, 0, 0, 0.3);
+            --dark-footer: #0a0a0a;
+            
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 16px;
+        }
+        
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 2.5rem 0 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s ease;
+        }
+        
+        body.dark-mode header {
+            background: var(--dark-header);
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+            animation: shine 8s infinite linear;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: clamp(1.8rem, 6vw, 3.2rem);
+            font-family: 'Pacifico', cursive;
+            position: relative;
+            display: inline-block;
+            animation: titleAnimation 3s ease-in-out infinite alternate;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            background: linear-gradient(45deg, #ffffff, #f1c40f, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: gradientEffect 4s ease-in-out infinite alternate, titleAnimation 3s ease-in-out infinite alternate;
+            padding: 0 20px;
+            margin-top: 0.5rem;
+        }
+        
+        h2, h3, h4 {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode h4 {
+            color: var(--dark-text);
+        }
+        
+        @keyframes gradientEffect {
+            0% {
+                background-position: 0% center;
+            }
+            100% {
+                background-position: 100% center;
+            }
+        }
+        
+        @keyframes shine {
+            0% {
+                transform: rotate(30deg) translate(-10%, -10%);
+            }
+            100% {
+                transform: rotate(30deg) translate(10%, 10%);
+            }
+        }
+        
+        @keyframes titleAnimation {
+            0% {
+                transform: scale(1) rotate(-1deg);
+            }
+            50% {
+                transform: scale(1.05) rotate(0deg);
+            }
+            100% {
+                transform: scale(1) rotate(1deg);
+            }
+        }
+        
+        .subtitle {
+            font-style: italic;
+            opacity: 0.9;
+            font-size: clamp(0.9rem, 3.5vw, 1.3rem);
+            margin-top: 0.5rem;
+            position: relative;
+            animation: subtitleFade 5s ease-in-out infinite;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            padding: 0 15px;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        @keyframes subtitleFade {
+            0%, 100% {
+                opacity: 0.85;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-5px);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            transition: transform 0.3s ease;
+            overflow-x: hidden;
+        }
+        
+        .knowledge-icon-container {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            width: clamp(40px, 10vw, 60px);
+            height: clamp(40px, 10vw, 60px);
+        }
+
+        .lottie-icon {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .lottie-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .lottie-icon.active {
+            transform: scale(1.1);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 85%;
+            max-width: 280px;
+            height: 100vh;
+            background: white;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            padding: 80px 0 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        body.dark-mode .side-menu {
+            background-color: var(--dark-card);
+            box-shadow: 2px 0 15px var(--dark-shadow);
+        }
+
+        .side-menu.active {
+            transform: translateX(300px);
+        }
+
+        .menu-tab {
+            width: 90%;
+            max-width: 240px;
+            height: clamp(40px, 8vw, 45px);
+            margin: 8px 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-size: 0.85rem;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 0 5px;
+            touch-action: manipulation;
+        }
+
+        body.dark-mode .menu-tab {
+            box-shadow: 0 4px 8px var(--dark-shadow);
+        }
+
+        .menu-tab[data-section="1"] {
+            background-color: var(--mindset-color);
+        }
+        .menu-tab[data-section="2"] {
+            background-color: var(--routine-color);
+        }
+        .menu-tab[data-section="3"] {
+            background-color: var(--health-color);
+        }
+        .menu-tab[data-section="4"] {
+            background-color: var(--relationships-color);
+        }
+        .menu-tab[data-section="5"] {
+            background-color: var(--study-color);
+        }
+        .menu-tab[data-section="6"] {
+            background-color: var(--spirituality-color);
+        }
+        .menu-tab[data-section="7"] {
+            background-color: var(--motivation-color);
+        }
+        .menu-tab[data-section="8"] {
+            background-color: var(--habits-color);
+        }
+        .menu-tab[data-section="9"] {
+            background-color: var(--alchemist-color);
+        }
+        .menu-tab[data-section="10"] {
+            background-color: var(--longevity-color);
+        }
+
+        .menu-tab:hover {
+            transform: translateX(8px) scale(1.02);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            opacity: 0.9;
+        }
+
+        .menu-header {
+            padding: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+            width: 100%;
+        }
+
+        body.dark-mode .menu-header {
+            border-bottom-color: #333;
+        }
+
+        .menu-header h2 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+            animation: headerPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes headerPulse {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 0 0 0 rgba(0,0,0,0);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+        }
+
+        body.dark-mode .menu-header h2 {
+            color: var(--dark-text);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            touch-action: none;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .section-content {
+            display: none;
+            margin-top: 30px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        body.dark-mode .section-content {
+            background-color: var(--dark-card);
+            box-shadow: 0 4px 12px var(--dark-shadow);
+            color: var(--dark-text);
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #section1 .card {
+            border-left: 4px solid var(--mindset-color);
+        }
+        #section2 .card {
+            border-left: 4px solid var(--routine-color);
+        }
+        #section3 .card {
+            border-left: 4px solid var(--health-color);
+        }
+        #section4 .card {
+            border-left: 4px solid var(--relationships-color);
+        }
+        #section5 .card {
+            border-left: 4px solid var(--study-color);
+        }
+        #section6 .card {
+            border-left: 4px solid var(--spirituality-color);
+        }
+        #section7 .card {
+            border-left: 4px solid var(--motivation-color);
+        }
+        #section8 .card {
+            border-left: 4px solid var(--habits-color);
+        }
+        #section9 .card {
+            border-left: 4px solid var(--alchemist-color);
+        }
+        #section10 .card {
+            border-left: 4px solid var(--longevity-color);
+        }
+
+        .card {
+            background: #ffffff;
+            padding: clamp(15px, 3vw, 20px);
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            color: var(--text-color);
+        }
+
+        body.dark-mode .card {
+            background-color: var(--dark-card);
+            color: var(--dark-text);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+
+        body.dark-mode .card:hover {
+            box-shadow: 0 6px 16px var(--dark-shadow);
+        }
+
+        .card-header {
+            margin-bottom: 15px;
+        }
+
+        .card-body {
+            line-height: 1.7;
+        }
+
+        .tip-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: clamp(12px, 2.5vw, 16px);
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            transition: background-color 0.3s ease;
+            color: var(--text-color);
+        }
+
+        body.dark-mode .tip-box {
+            background-color: #2a2a2a;
+            color: var(--dark-text);
+        }
+
+        .tip-header {
+            margin-bottom: 10px;
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            font-size: clamp(1rem, 3vw, 1.1rem);
+        }
+
+        .tip-content {
+            line-height: 1.7;
+        }
+
+        .welcome-message {
+            text-align: center;
+            margin: 10px auto 30px;
+            max-width: 800px;
+            padding: clamp(20px, 4vw, 30px);
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            transform: translateY(-20px);
+        }
+
+        body.dark-mode .welcome-message {
+            background-color: var(--dark-card);
+            box-shadow: 0 4px 12px var(--dark-shadow);
+        }
+
+        .welcome-message h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            animation: welcomeGlow 3s ease-in-out infinite alternate;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+
+        @keyframes welcomeGlow {
+            0% {
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.9), 
+                            0 0 30px rgba(255, 165, 0, 0.6);
+            }
+        }
+
+        body.dark-mode .welcome-message h2 {
+            color: var(--dark-text);
+        }
+
+        .welcome-message p {
+            margin-bottom: 15px;
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            line-height: 1.7;
+        }
+
+        .study-image {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .study-image:hover {
+            transform: scale(1.02);
+        }
+
+        body.dark-mode .study-image {
+            box-shadow: 0 4px 12px var(--dark-shadow);
+        }
+
+        /* ESTILOS MELHORADOS PARA AS FRASES DO RODAPÉ */
+        .footer-message {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            overflow: hidden;
+        }
+
+        body.dark-mode .footer-message {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-message span {
+            position: absolute;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            opacity: 0;
+            transform: scale(0.9);
+            background: linear-gradient(45deg, #ffffff, #f1c40f, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: gradientEffect 4s ease-in-out infinite alternate;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        body.dark-mode .footer-message span {
+            background: linear-gradient(45deg, #f8f9fa, #f1c40f, #f8f9fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-message span.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+            animation: quoteIn 0.8s forwards, gradientEffect 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes quoteIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) rotateX(90deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+
+        @keyframes quoteOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20px) rotateX(-90deg);
+            }
+        }
+
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: clamp(1.2rem, 3vw, 2rem) 0;
+            margin-top: 2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-mode footer {
+            background-color: var(--dark-footer);
+            color: #e0e0e0;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        .theme-switcher {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 100;
+        }
+        
+        .theme-toggle {
+            display: none;
+        }
+        
+        .theme-label {
+            cursor: pointer;
+            display: inline-block;
+            width: clamp(38px, 9vw, 50px);
+            height: clamp(38px, 9vw, 50px);
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark-mode .theme-label {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .theme-label:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+        
+        body.dark-mode .theme-label:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .theme-icon {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            transition: all 0.3s ease;
+        }
+
+        /* Estilos Específicos para a Seção de Mentalidade */
+        .pillars-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .pillar {
+            background: rgba(0, 0, 0, 0.03);
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: var(--text-color);
+        }
+        
+        body.dark-mode .pillar {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--dark-text);
+        }
+        
+        .pillar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .pillar h4 {
+            margin: 0 0 10px 0;
+            color: var(--mindset-color);
+        }
+        
+        .mindset-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .mindset-table th, .mindset-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--text-color);
+        }
+        
+        body.dark-mode .mindset-table th,
+        body.dark-mode .mindset-table td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--dark-text);
+        }
+        
+        .mindset-table th {
+            background-color: rgba(0, 0, 0, 0.05);
+            font-weight: 600;
+        }
+        
+        body.dark-mode .mindset-table th {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .benefits-list li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-left: 3px solid var(--mindset-color);
+            background-color: rgba(0, 0, 0, 0.03);
+            color: var(--text-color);
+        }
+        
+        body.dark-mode .benefits-list li {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--dark-text);
+        }
+        
+        .purpose-map {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        
+        .map-item {
+            background: rgba(0, 0, 0, 0.03);
+            padding: 15px;
+            border-radius: 6px;
+            transition: transform 0.3s ease;
+            color: var(--text-color);
+        }
+        
+        body.dark-mode .map-item {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--dark-text);
+        }
+        
+        .map-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .tool {
+            background: rgba(0, 0, 0, 0.03);
+            padding: 15px;
+            border-radius: 6px;
+            transition: transform 0.3s ease;
+            color: var(--text-color);
+        }
+        
+        body.dark-mode .tool {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--dark-text);
+        }
+        
+        .tool:hover {
+            transform: translateY(-3px);
+        }
+        
+        .case-studies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .case {
+            background: rgba(0, 0, 0, 0.03);
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            color: var(--text-color);
+        }
+        
+        body.dark-mode .case {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--dark-text);
+        }
+        
+        .case:hover {
+            transform: translateY(-3px);
+        }
+        
+        .case em {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: var(--text-light);
+            opacity: 0.8;
+        }
+        
+        body.dark-mode .case em {
+            color: var(--dark-text-light);
+        }
+        
+        .morning-routine li {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+            color: var(--text-color);
+        }
+        
+        body.dark-mode .morning-routine li {
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            color: var(--dark-text);
+        }
+        
+        .evening-checklist li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+            color: var(--text-color);
+        }
+        
+        body.dark-mode .evening-checklist li {
+            color: var(--dark-text);
+        }
+        
+        .evening-checklist li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--mindset-color);
+        }
+        
+        .impact-list li {
+            margin-bottom: 12px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 6px;
+            color: var(--text-color);
+        }
+        
+        body.dark-mode .impact-list li {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--dark-text);
+        }
+        
+        .final-message {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            color: var(--text-color);
+        }
+        
+        body.dark-mode .final-message {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--dark-text);
+        }
+        
+        .quote {
+            font-style: italic;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        body.dark-mode .quote {
+            color: var(--dark-text-light);
+        }
+
+        /* Estilos para listas */
+        ul, ol {
+            padding-left: 20px;
+            color: var(--text-color);
+        }
+        
+        body.dark-mode ul,
+        body.dark-mode ol {
+            color: var(--dark-text);
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .styled-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .styled-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .styled-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding-top: 3.5rem;
+                padding-bottom: 1rem;
+            }
+            
+            .side-menu {
+                transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            }
+            
+            .menu-overlay {
+                transition: opacity 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), 
+                           visibility 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            }
+            
+            .section-content {
+                transition: none;
+            }
+            
+            .knowledge-icon-container {
+                width: clamp(30px, 10vw, 40px);
+                height: clamp(30px, 10vw, 40px);
+                top: 5px;
+                left: 5px;
+            }
+            
+            .theme-switcher {
+                top: 5px;
+                right: 5px;
+            }
+            
+            .menu-tab {
+                font-size: 0.75rem;
+                height: clamp(38px, 8vw, 42px);
+                margin: 6px 0;
+            }
+            
+            .menu-header h2 {
+                font-size: 1rem;
+            }
+            
+            body.menu-open {
+                position: fixed;
+                width: 100%;
+            }
+            
+            input, textarea, select {
+                font-size: 16px;
+            }
+            
+            /* Ajustes para mobile */
+            .pillars-container, .purpose-map, .tools-grid, .case-studies {
+                grid-template-columns: 1fr;
+            }
+            
+            .card, .tip-box {
+                padding: 15px;
+            }
+            
+            .study-image {
+                max-width: 100%;
+                margin: 15px 0;
+            }
+            
+            .footer-message {
+                font-size: 1.1rem;
+                padding: 15px;
+                min-height: 90px;
+            }
+            
+            .welcome-message {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .side-menu {
+                width: 82%;
+                max-width: 260px;
+            }
+            
+            .menu-tab {
+                font-size: 0.7rem;
+            }
+            
+            .footer-message {
+                min-height: 100px;
+                font-size: 1rem;
+            }
+            
+            h1 {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+            }
+            
+            .subtitle {
+                font-size: clamp(0.8rem, 3.5vw, 1rem);
+            }
+        }
+
+        /* Acessibilidade - Foco visível */
+        a:focus, button:focus, .menu-tab:focus, .theme-label:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Jornada de Crescimento Pessoal</h1>
+            <p class="subtitle">Transforme sua vida através de hábitos poderosos e mentalidade vencedora</p>
+        </div>
+        
+        <div class="theme-switcher">
+            <input type="checkbox" id="themeToggle" class="theme-toggle">
+            <label for="themeToggle" class="theme-label">
+                <span class="theme-icon">🌙</span>
+            </label>
+        </div>
+    </header>
+    
+    <div class="knowledge-icon-container">
+        <div id="lottie-animation" class="lottie-icon"></div>
+    </div>
+    
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <h2>Áreas de Crescimento</h2>
+        </div>
+        <div class="menu-tab" data-section="1">Mentalidade</div>
+        <div class="menu-tab" data-section="2">Rotina</div>
+        <div class="menu-tab" data-section="3">Saúde</div>
+        <div class="menu-tab" data-section="4">Relacionamentos</div>
+        <div class="menu-tab" data-section="5">Estudo</div>
+        <div class="menu-tab" data-section="6">Espiritualidade</div>
+        <div class="menu-tab" data-section="7">Motivação</div>
+        <div class="menu-tab" data-section="8">O Poder do Hábito</div>
+        <div class="menu-tab" data-section="9">O Alquimista</div>
+        <div class="menu-tab" data-section="10">Longevidade</div>
+    </div>
+    
+    <div class="menu-overlay" id="menuOverlay"></div>
+    
+    <div class="container" id="mainContainer">
+        <div class="welcome-message" id="welcomeMessage">
+            <h2>Bem-vindo</h2>
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                 alt="Pessoas estudando em uma biblioteca" 
+                 class="study-image">
+            <p>Clique no ícone no canto superior esquerdo para explorar as áreas de desenvolvimento pessoal.</p>
+            <p>Selecione uma categoria no menu lateral para acessar conteúdos e dicas práticas.</p>
+        </div>
+        
+        <!-- Seção 1 - Mentalidade (Versão Final Completa) -->
+        <div class="section-content" id="section1">
+            <h2 style="color: var(--mindset-color);">1. Mentalidade e Propósito</h2>
+            
+            <!-- Card 1 - Introdução Conceitual -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>O Poder da Mentalidade</h3>
+                </div>
+                <div class="card-body">
+                    <p>Nossa mentalidade é o sistema operacional que determina como processamos desafios, oportunidades e nosso próprio potencial. Uma mentalidade de crescimento, aliada a um propósito claro, é a base para transformação pessoal duradoura.</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Neurociência da Mentalidade</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>O cérebro possui <strong>neuroplasticidade</strong> - capacidade de se reprogramar através de novos pensamentos</li>
+                                <li>Práticas diárias podem fortalecer conexões neurais positivas</li>
+                                <li>Estudos mostram que a mentalidade afeta desde desempenho até longevidade</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 - Pilares Fundamentais -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Os 5 Pilares da Mentalidade Vencedora</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Características Essenciais</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="pillars-container">
+                                <div class="pillar">
+                                    <h4>🔍 Foco Estratégico</h4>
+                                    <p>Direcionamento consciente para objetivos específicos, evitando dispersão</p>
+                                </div>
+                                <div class="pillar">
+                                    <h4>🛡️ Resiliência Ativa</h4>
+                                    <p>Capacidade de transformar obstáculos em degraus para crescimento</p>
+                                </div>
+                                <div class="pillar">
+                                    <h4>💡 Autoconhecimento Profundo</h4>
+                                    <p>Compreensão dos próprios valores, paixões e padrões mentais</p>
+                                </div>
+                                <div class="pillar">
+                                    <h4>⏱️ Disciplina Flexível</h4>
+                                    <p>Consistência com inteligência emocional para ajustar rotas</p>
+                                </div>
+                                <div class="pillar">
+                                    <h4>🔄 Adaptabilidade Criativa</h4>
+                                    <p>Habilidade de pivotar estratégias mantendo o propósito central</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 - Mindset de Crescimento -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Fixed vs. Growth Mindset</h3>
+                </div>
+                <div class="card-body">
+                    <p>A revolucionária pesquisa de Carol Dweck (Stanford) revelou como nossas crenças sobre capacidade moldam nosso sucesso.</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Comparativo dos Mindsets</div>
+                        </div>
+                        <div class="tip-content">
+                            <table class="mindset-table">
+                                <tr>
+                                    <th>Situação</th>
+                                    <th>Mentalidade Fixa</th>
+                                    <th>Mentalidade de Crescimento</th>
+                                </tr>
+                                <tr>
+                                    <td>Desafios</td>
+                                    <td>Evita por medo de falhar</td>
+                                    <td>Abraça como oportunidades</td>
+                                </tr>
+                                <tr>
+                                    <td>Esforço</td>
+                                    <td>Sinal de limitação</td>
+                                    <td>Caminho para maestria</td>
+                                </tr>
+                                <tr>
+                                    <td>Críticas</td>
+                                    <td>Leva para o lado pessoal</td>
+                                    <td>Extrai lições úteis</td>
+                                </tr>
+                                <tr>
+                                    <td>Sucesso dos outros</td>
+                                    <td>Sentimento de ameaça</td>
+                                    <td>Fonte de inspiração</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Como Cultivar Growth Mindset</div>
+                        </div>
+                        <div class="tip-content">
+                            <ol class="styled-list">
+                                <li>Substitua "Não consigo" por "Ainda não consigo"</li>
+                                <li>Celebre o processo, não apenas resultados</li>
+                                <li>Reenquadre falhas como feedback</li>
+                                <li>Pratique autodiscurso positivo</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 - Propósito Transformador -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Propósito: Seu GPS Existencial</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Benefícios Cientificamente Comprovados</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="benefits-list">
+                                <li>📈 <strong>+27%</strong> de produtividade (Harvard Business Review)</li>
+                                <li>😊 <strong>+35%</strong> de satisfação vital (Journal of Positive Psychology)</li>
+                                <li>🧠 <strong>-41%</strong> risco de depressão (American Journal of Psychiatry)</li>
+                                <li>❤️ <strong>+20%</strong> de longevidade (The Lancet)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Mapa do Propósito Pessoal</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="purpose-map">
+                                <div class="map-item">
+                                    <h4>💎 Valores Essenciais</h4>
+                                    <p>O que realmente importa para você?</p>
+                                </div>
+                                <div class="map-item">
+                                    <h4>🎯 Paixões Sustentáveis</h4>
+                                    <p>O que energiza sua alma?</p>
+                                </div>
+                                <div class="map-item">
+                                    <h4>🌍 Contribuição Única</h4>
+                                    <p>Como pode servir ao mundo com seus dons?</p>
+                                </div>
+                                <div class="map-item">
+                                    <h4>🚀 Legado Desejado</h4>
+                                    <p>Como quer ser lembrado?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 - Ferramentas Práticas -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Kit de Ferramentas Mentais</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Exercícios de Reprogramação</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="tools-grid">
+                                <div class="tool">
+                                    <h4>📝 Diário de Progresso</h4>
+                                    <p>Registro diário de pequenas vitórias e aprendizados</p>
+                                </div>
+                                <div class="tool">
+                                    <h4>🧘‍♂️ Meditação do Propósito</h4>
+                                    <p>Visualização guiada do seu "eu" alinhado</p>
+                                </div>
+                                <div class="tool">
+                                    <h4>🔍 Análise de Padrões</h4>
+                                    <p>Identifique crenças limitantes através de seus pensamentos recorrentes</p>
+                                </div>
+                                <div class="tool">
+                                    <h4>💬 Affirmações Contextuais</h4>
+                                    <p>Frases poderosas específicas para áreas desafiadoras</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Técnica dos 5 Porquês</div>
+                        </div>
+                        <div class="tip-content">
+                            <p>Para descobrir seu propósito mais profundo:</p>
+                            <ol class="styled-list">
+                                <li>Comece com um objetivo superficial</li>
+                                <li>Pergunte "Por que isso é importante?"</li>
+                                <li>Repita 5 vezes até chegar à essência</li>
+                                <li>Exemplo: Quero promoção → Para ter segurança → Para minha família se sentir protegida → Para que tenhamos liberdade de viver nossas paixões → Para realizarmos nosso propósito juntos</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 - Casos Reais -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Arquétipos de Mentalidade</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Padrões de Excelência</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="case-studies">
+                                <div class="case">
+                                    <h4>🏀 Michael Jordan</h4>
+                                    <p>Corte do time na escola → Treinou obsessivamente → Maior jogador da história</p>
+                                    <p><em>"Eu falhei repetidamente. É por isso que sou um sucesso."</em></p>
+                                </div>
+                                <div class="case">
+                                    <h4>🚀 Elon Musk</h4>
+                                    <p>Fracassos iniciais com SpaceX → Aprendizado acelerado → Revolução espacial</p>
+                                    <p><em>"Se algo é importante o suficiente, você tenta mesmo se o provável resultado for falha."</em></p>
+                                </div>
+                                <div class="case">
+                                    <h4>🕊️ Viktor Frankl</h4>
+                                    <p>Sobrevivente do Holocausto → Criou a Logoterapia → Mostrou que o propósito supera até os piores cenários</p>
+                                    <p><em>"Quem tem um 'porquê' vive suporta quase qualquer 'como'."</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 - Integração Diária -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Ritual Matinal de Mentalidade</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Sequência Poderosa (20min)</div>
+                        </div>
+                        <div class="tip-content">
+                            <ol class="morning-routine styled-list">
+                                <li>🌅 <strong>1min de Presença:</strong> Respiração consciente ao acordar</li>
+                                <li>📔 <strong>3 Coisas pela Gratidão:</strong> Registre no diário</li>
+                                <li>🎯 <strong>Visualização do Dia Ideal:</strong> Veja-se agindo com sua melhor mentalidade</li>
+                                <li>💪 <strong>Affirmação Personalizada:</strong> Frase poderosa alinhada ao seu propósito</li>
+                                <li>🏃‍♂️ <strong>Movimento Energizante:</strong> Alongamento ou exercício rápido</li>
+                                <li>📚 <strong>Nutrição Mental:</strong> Leitura inspiradora (5min)</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Checklist Noturno</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="evening-checklist styled-list">
+                                <li>Que desafios enfrentei hoje com mentalidade de crescimento?</li>
+                                <li>Como me aproximei do meu propósito hoje?</li>
+                                <li>Que lição posso levar para amanhã?</li>
+                                <li>3 pequenas vitórias do dia</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8 - Conclusão Transformadora -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Sua Jornada Começa Aqui</h3>
+                </div>
+                <div class="card-body">
+                    <p>Mentalidade e propósito não são destinos, mas bússolas para uma vida extraordinária. Ao adotar essas práticas:</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Efeitos em Cascata</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="impact-list styled-list">
+                                <li>🧠 <strong>Reconfiguração Cerebral:</strong> Seus padrões neurais mudam com o tempo</li>
+                                <li>💫 <strong>Efeito Halo:</strong> Melhora todas as áreas da vida simultaneamente</li>
+                                <li>🌱 <strong>Crescimento Exponencial:</strong> Pequenos ganhos diários levam a transformações radicais</li>
+                                <li>✨ <strong>Magnetismo:</strong> Atrai pessoas e oportunidades alinhadas</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="final-message">
+                        <p><strong>Próximo Passo:</strong> Escolha UMA técnica desta seção para implementar nas próximas 24 horas. A consistência em pequenas ações gera grandes revoluções internas.</p>
+                        <p class="quote">"Você não precisa ver toda a escada, apenas dê o primeiro passo." - Martin Luther King Jr.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seção 2 - Rotina (Original) -->
+        <div class="section-content" id="section2">
+            <h2 style="color: var(--routine-color);">2. Rotina Diária e Disciplina</h2>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Acorde Cedo</h3>
+                </div>
+                <div class="card-body">
+                    <p>Madrugar aumenta a produtividade. Durma 6–8 horas para manter a energia durante o dia.</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Dicas para Acordar Cedo</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Estabeleça um horário fixo para dormir e acordar</li>
+                                <li>Evite cafeína após as 14h</li>
+                                <li>Exponha-se à luz solar pela manhã</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Lista de Tarefas Eficaz</h3>
+                </div>
+                <div class="card-body">
+                    <p>Priorize 3 atividades essenciais por dia e risque-as ao concluir (isso gera satisfação e motivação).</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Método Ivy Lee</div>
+                        </div>
+                        <div class="tip-content">
+                            <ol class="styled-list">
+                                <li>No final do dia, escreva as 6 tarefas mais importantes para o dia seguinte</li>
+                                <li>Priorize-as em ordem de importância</li>
+                                <li>No dia seguinte, trabalhe na primeira tarefa até completá-la</li>
+                                <li>Continue na ordem, sem pular</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Combate à Procrastinação</h3>
+                </div>
+                <div class="card-body">
+                    <p>Use a técnica Pomodoro (25 minutos de foco + 5 minutos de pausa) para manter a produtividade.</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Como Implementar o Pomodoro</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Escolha uma tarefa</li>
+                                <li>Defina um temporizador para 25 minutos</li>
+                                <li>Trabalhe sem distrações até o alarme</li>
+                                <li>Faça uma pausa de 5 minutos</li>
+                                <li>Após 4 ciclos, faça uma pausa maior (15-30 minutos)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seção 3 - Saúde (Versão Atualizada) -->
+        <div class="section-content" id="section3">
+            <h2 style="color: var(--health-color);">3. Saúde Física (Alimentação, Sono e Exercícios)</h2>
+            
+            <!-- Card 1 - Benefícios de Acordar Cedo -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Benefícios Científicos de Acordar Cedo</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">✅ Melhora a Produtividade</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>O cérebro está mais descansado e focado nas primeiras horas do dia</li>
+                                <li>Menos distrações (redes sociais, barulho, interrupções)</li>
+                                <li>Tempo para planejar o dia com clareza</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">✅ Saúde Mental Aprimorada</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Redução do estresse (evita a correria matinal)</li>
+                                <li>Maior sensação de controle sobre a vida</li>
+                                <li>Tempo para meditação, oração ou mindfulness</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">✅ Melhor Qualidade de Sono</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>O corpo se adapta a um ritmo circadiano saudável</li>
+                                <li>Exposição à luz natural pela manhã regula a melatonina</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 2 - Método para Acordar Cedo -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Passos para Acordar Cedo (Método Científico)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">🔹 Ajuste Gradual do Despertador</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Não mude abruptamente de 8h para 5h</li>
+                                <li>Regra dos 15 minutos: Acorde 15 min mais cedo a cada 2-3 dias</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">🔹 Ciclo de Sono Ideal</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Um adulto precisa de 7-9h de sono</li>
+                                <li>Calcule seu horário baseado em ciclos de 90 minutos</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">🔹 Rotina Noturna para Dormir Melhor</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Desligue telas 1h antes de dormir</li>
+                                <li>Tome um chá calmante (camomila, erva-doce)</li>
+                                <li>Leia um livro físico (evite telas)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 3 - Dicas e Ferramentas -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Dicas e Ferramentas para Manter o Hábito</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">✔ Dicas Essenciais</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Evite sonecas (o sono fragmentado piora o cansaço)</li>
+                                <li>Tome café apenas após 90min acordado</li>
+                                <li>Exponha-se ao sol matinal (ajusta o relógio biológico)</li>
+                                <li>Celebre pequenas vitórias</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">📱 Ferramentas Úteis</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li><strong>Apps:</strong> Sleep Cycle, F.lux (reduz luz azul)</li>
+                                <li><strong>Livros:</strong> "O Milagre da Manhã", "Por Que Nós Dormimos?"</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="final-message">
+                        <p><strong>Conclusão:</strong> Acordar cedo não é sobre sacrificar o sono, mas sobre otimizar energia e tempo. Com disciplina e ajustes graduais, você colherá benefícios na saúde, produtividade e bem-estar.</p>
+                        <p class="quote">"O amanhecer é uma oportunidade diária de reinício. Aproveite."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 4 - Alimentação Saudável (original) -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Alimentação Saudável</h3>
+                </div>
+                <div class="card-body">
+                    <p>Coma alimentos naturais (frutas, vegetais, proteínas). Evite excesso de açúcar e processados.</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Princípios de Nutrição</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>80% alimentos naturais, 20% outros</li>
+                                <li>Beba 2L de água por dia (desidratação causa cansaço mental)</li>
+                                <li>Prefira alimentos integrais aos refinados</li>
+                                <li>Inclua proteínas em todas as refeições</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 5 - Exercícios Físicos (original) -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Exercícios Físicos</h3>
+                </div>
+                <div class="card-body">
+                    <p>Movimente-se 30 min/dia (caminhada, yoga, musculação). Exercício libera endorfinas (hormônio da felicidade).</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Benefícios do Exercício</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Melhora o humor e reduz estresse</li>
+                                <li>Aumenta a energia e disposição</li>
+                                <li>Melhora a qualidade do sono</li>
+                                <li>Fortalece o sistema imunológico</li>
+                                <li>Aumenta a autoconfiança</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seção 4 - Relacionamentos (Original) -->
+        <div class="section-content" id="section4">
+            <h2 style="color: var(--relationships-color);">4. Relacionamentos Saudáveis</h2>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Cerque-se de Pessoas que Inspiram</h3>
+                </div>
+                <div class="card-body">
+                    <p>Evite quem desmotiva ou critica seus sonhos. Seu ambiente social influencia diretamente seu sucesso.</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Como Identificar Relações Tóxicas</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Pessoas que sempre reclamam</li>
+                                <li>Que desencorajam seus sonhos</li>
+                                <li>Que não celebram suas conquistas</li>
+                                <li>Que sugam sua energia</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Vulnerabilidade com Confiança</h3>
+                </div>
+                <div class="card-body">
+                    <p>Compartilhe suas lutas com alguém de confiança (familiares, amigos, mentor espiritual).</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Benefícios da Vulnerabilidade</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Cria conexões mais profundas</li>
+                                <li>Reduz o estresse e ansiedade</li>
+                                <li>Permite receber ajuda quando necessário</li>
+                                <li>Inspira outros a serem autênticos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Perdão e Libertação</h3>
+                </div>
+                <div class="card-body">
+                    <p>Mágoas consomem energia. Liberte-se com o perdão (inclusive a si mesmo).</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Processo de Perdão</div>
+                        </div>
+                        <div class="tip-content">
+                            <ol class="styled-list">
+                                <li>Reconheça a mágoa</li>
+                                <li>Entenda que o perdão é para você, não para o outro</li>
+                                <li>Decida perdoar (é uma escolha, não um sentimento)</li>
+                                <li>Liberte a necessidade de justiça ou vingança</li>
+                                <li>Siga em frente sem olhar para trás</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seção 5 - Estudo (Versão Ampliada) -->
+        <div class="section-content" id="section5">
+            <h2 style="color: var(--study-color);">5. Estudo e Aprendizado Acelerado</h2>
+            
+            <!-- Card 1 - Métodos Científicos -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Métodos Científicos de Aprendizado Acelerado</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Técnica de Feynman (Explicação Simplificada)</div>
+                        </div>
+                        <div class="tip-content">
+                            <ol class="styled-list">
+                                <li>Escolha um conceito complexo que deseja dominar</li>
+                                <li>Explique-o em voz alta como se ensinasse a uma criança</li>
+                                <li>Identifique lacunas no seu entendimento e volte às fontes</li>
+                                <li>Simplifique ainda mais e use analogias</li>
+                            </ol>
+                            <p><em>Benefício: Até 90% de retenção (vs. 10% da leitura passiva)</em></p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Interleaving (Estudo Intercalado)</div>
+                        </div>
+                        <div class="tip-content">
+                            <p>Misture tópicos diferentes em uma única sessão (ex.: 30min de filosofia → 30min de neurociência → 30min de habilidades sociais).</p>
+                            <p><em>Benefício: Melhora a transferência de conhecimento entre áreas (pesquisa da University of South Florida)</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 - Neurohacks -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Neurohacks para Memória de Longo Prazo</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Spaced Repetition (Repetição Espaçada)</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Use apps como Anki ou RemNote com algoritmos baseados no esquecimento programado</li>
+                                <li>Revise o material em intervalos crescentes (ex.: 1 dia → 1 semana → 1 mês)</li>
+                            </ul>
+                            <p><em>Dado científico: Aumenta a retenção em 200% (Journal of Memory and Language)</em></p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Codificação Dupla (Dual Coding)</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Combine texto + imagens mentais (ex.: Para aprender sobre "resiliência", imagine uma árvore se curvando no vento)</li>
+                                <li>Use mapas mentais com ícones e cores</li>
+                            </ul>
+                            <p><em>Efeito: Ativa dois canais de memória (visual + verbal), aumentando a retenção</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 - Produtividade -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Técnicas de Produtividade Extrema</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Bloqueio de Tempo por Energia Cognitiva</div>
+                        </div>
+                        <div class="tip-content">
+                            <p>Cronograma ideal (baseado em ciclos ultradianos):</p>
+                            <ul class="styled-list">
+                                <li>Manhã (6h–10h): Estudo focado (tarefas complexas)</li>
+                                <li>Tarde (14h–16h): Revisão ou aprendizagem ativa</li>
+                                <li>Noite (20h–22h): Consolidação (leitura leve, journaling)</li>
+                            </ul>
+                            <p><em>Regra: 90min de foco → 20min de descanso sem telas</em></p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Pomodoro Avançado</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>50min de estudo → 10min de movimento físico (melhora oxigenação cerebral)</li>
+                                <li>Use um timer físico (não o celular) para evitar distrações</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 - Aprendizado Baseado em Competências -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Aprendizado Baseado em Competências</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Matriz de Habilidades</div>
+                        </div>
+                        <div class="tip-content">
+                            <ol class="styled-list">
+                                <li>Liste 3 habilidades que deseja dominar</li>
+                                <li>Divida cada uma em microcompetências</li>
+                                <li>Pratique uma microcompetência por dia com feedback imediato</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Projetos de Aplicação Imediata</div>
+                        </div>
+                        <div class="tip-content">
+                            <p>Exemplos:</p>
+                            <ul class="styled-list">
+                                <li>Aprenda gestão de projetos criando um plano para um objetivo pessoal</li>
+                                <li>Estude psicologia persuasiva e aplique em uma negociação real</li>
+                            </ul>
+                            <p><em>Benefício: Aprendizado experiencial (70% mais eficaz que teoria pura)</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 - Biohacks -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Biohacks para Performance Mental</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Nutrição Cerebral</div>
+                        </div>
+                        <div class="tip-content">
+                            <p>Alimentos-chave:</p>
+                            <ul class="styled-list">
+                                <li>Ômega-3 (salmão, nozes) → Melhora conexões neurais</li>
+                                <li>Mirtilos → Antioxidantes para memória</li>
+                                <li>Ovos (colina) → Neurotransmissores</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Sono de Consolidação</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Revise o material 1h antes de dormir</li>
+                                <li>Use ruído rosa para sono profundo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 - Ferramentas -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Ferramentas Avançadas</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Para conhecimento profundo</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Obsidian (notas ligadas por conceitos)</li>
+                                <li>Wolfram Alpha (para conceitos matemáticos/científicos)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Para habilidades sociais</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Charisma on Command (análise comportamental)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 - Conclusão -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Mindset de Crescimento Radical</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Práticas diárias</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>"Falhar 1x por dia": Force-se a cometer erros em ambientes controlados</li>
+                                <li>Diário de progresso inverso: Anote o que ainda não sabe</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="final-message">
+                        <p><strong>Próximo Passo:</strong> Escolha UMA técnica desta seção para implementar nas próximas 24 horas.</p>
+                        <p class="quote">"O expert em qualquer coisa foi um dia um iniciante que decidiu não parar." — Helen Hayes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seção 6 - Espiritualidade (Versão Ampliada) -->
+        <div class="section-content" id="section6">
+            <h2 style="color: var(--spirituality-color);">6. Espiritualidade e Fé Cristã</h2>
+            
+            <!-- Card 1 - Estudo da Palavra -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Estudo da Palavra de Deus (Bíblia)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Fundamentos do Estudo Bíblico</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li><strong>Leitura diária:</strong> Comece com os Evangelhos (Mateus, Marcos, Lucas, João) e Salmos</li>
+                                <li><strong>Meditação:</strong> Reflita sobre o significado e como aplicar na sua vida (Js 1:8)</li>
+                                <li><strong>Devocionais:</strong> Materiais de estudo podem ajudar a entender melhor a fé</li>
+                                <li><strong>Método SOAP:</strong> Escritura, Observação, Aplicação, Oração</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 - Oração -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Oração Constante</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Elementos da Oração Eficaz</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="pillars-container">
+                                <div class="pillar">
+                                    <h4>🗣️ Comunhão</h4>
+                                    <p>Fale com Deus todos os dias com honestidade (Fl 4:6)</p>
+                                </div>
+                                <div class="pillar">
+                                    <h4>🙏 Súplicas</h4>
+                                    <p>Apresente seus pedidos com humildade</p>
+                                </div>
+                                <div class="pillar">
+                                    <h4>🙌 Adoração</h4>
+                                    <p>Exalte a Deus por quem Ele é</p>
+                                </div>
+                                <div class="pillar">
+                                    <h4>🤲 Gratidão</h4>
+                                    <p>Agradeça pelas bênçãos recebidas</p>
+                                </div>
+                                <div class="pillar">
+                                    <h4>🧘‍♂️ Silêncio</h4>
+                                    <p>Pratique a escuta para ouvir a voz de Deus (Sl 46:10)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 - Comunhão -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Comunhão com Outros Cristãos</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Vida em Comunidade</div>
+                        </div>
+                        <div class="tip-content">
+                            <table class="mindset-table">
+                                <tr>
+                                    <th>Prática</th>
+                                    <th>Benefício</th>
+                                    <th>Referência</th>
+                                </tr>
+                                <tr>
+                                    <td>Frequentar igreja</td>
+                                    <td>A fé cresce em comunidade</td>
+                                    <td>Hb 10:25</td>
+                                </tr>
+                                <tr>
+                                    <td>Grupos pequenos</td>
+                                    <td>Compartilhar dúvidas e experiências</td>
+                                    <td>At 2:42</td>
+                                </tr>
+                                <tr>
+                                    <td>Mentores espirituais</td>
+                                    <td>Orientação de pessoas maduras</td>
+                                    <td>Tt 2:3-5</td>
+                                </tr>
+                                <tr>
+                                    <td>Servir juntos</td>
+                                    <td>Crescimento mútuo</td>
+                                    <td>1Pe 4:10</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 - Prática da Fé -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Obediência e Prática da Fé</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Fé em Ação</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="benefits-list styled-list">
+                                <li>📖 <strong>Viver princípios bíblicos:</strong> A fé sem obras é morta (Tg 2:17)</li>
+                                <li>🤝 <strong>Servir ao próximo:</strong> Ajude os necessitados (Mt 25:40)</li>
+                                <li>✝️ <strong>Santificação:</strong> Abandone pecados conhecidos (1Pe 1:15-16)</li>
+                                <li>🌱 <strong>Discipulado:</strong> Faça outros discípulos (Mt 28:19)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 - Provações -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Confiança em Deus nas Provações</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Perspectiva Bíblica sobre Dificuldades</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="purpose-map">
+                                <div class="map-item">
+                                    <h4>💪 Fortalecimento</h4>
+                                    <p>As dificuldades fortalecem a fé (Rm 5:3-4)</p>
+                                </div>
+                                <div class="map-item">
+                                    <h4>🔄 Propósito</h4>
+                                    <p>Deus usa tudo para o bem (Rm 8:28)</p>
+                                </div>
+                                <div class="map-item">
+                                    <h4>📝 Testemunhos</h4>
+                                    <p>Registre as vitórias que Deus já deu</p>
+                                </div>
+                                <div class="map-item">
+                                    <h4>⏳ Tempo</h4>
+                                    <p>Deus age no tempo perfeito (Ec 3:11)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 - Jejum -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Jejum e Renúncia</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Práticas de Disciplina Espiritual</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="tools-grid">
+                                <div class="tool">
+                                    <h4>⏱️ Jejum periódico</h4>
+                                    <p>Para focinhas mais em Deus (Mt 6:16-18)</p>
+                                </div>
+                                <div class="tool">
+                                    <h4>✝️ Renúncia</h4>
+                                    <p>Reduza distrações que afastam de Deus</p>
+                                </div>
+                                <div class="tool">
+                                    <h4>📵 Desintoxicação digital</h4>
+                                    <p>Tempo sem tecnologia para oração</p>
+                                </div>
+                                <div class="tool">
+                                    <h4>💸 Generosidade</h4>
+                                    <p>Abençoar outros como ato de fé</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 - Espírito Santo -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Busque o Espírito Santo</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Como ser guiado pelo Espírito</div>
+                        </div>
+                        <div class="tip-content">
+                            <ol class="styled-list">
+                                <li>Peça o enchimento do Espírito (Gl 5:22-23)</li>
+                                <li>Aprenda a discernir Sua voz</li>
+                                <li>Esteja atento à paz interior (Cl 3:15)</li>
+                                <li>Confirme pela Palavra de Deus</li>
+                                <li>Busque conselho de crentes maduros</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Frutos do Espírito</div>
+                        </div>
+                        <div class="tip-content">
+                            <p>"Mas o fruto do Espírito é amor, alegria, paz, paciência, amabilidade, bondade, fidelidade, mansidão e domínio próprio." (Gálatas 5:22-23)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8 - Crescimento -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Crescimento Espiritual Contínuo</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Recursos para Edificação</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="case-studies">
+                                <div class="case">
+                                    <h4>📚 Livros Cristãos</h4>
+                                    <p>Autores como C.S. Lewis, A.W. Tozer, John Piper</p>
+                                    <p><em>"Conhecimento de Deus é a joia mais preciosa"</em></p>
+                                </div>
+                                <div class="case">
+                                    <h4>🎧 Conteúdo Edificante</h4>
+                                    <p>Pregadores como Timothy Keller, Joyce Meyer</p>
+                                    <p><em>"A fé vem pelo ouvir a Palavra" (Rm 10:17)</em></p>
+                                </div>
+                                <div class="case">
+                                    <h4>🎵 Louvor e Adoração</h4>
+                                    <p>Músicas que elevam o coração a Deus</p>
+                                    <p><em>"Habite ricamente em vós a Palavra" (Cl 3:16)</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 9 - Prosperidade -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Princípios Bíblicos para Prosperidade</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">7 Princípios Financeiros</div>
+                        </div>
+                        <div class="tip-content">
+                            <table class="mindset-table">
+                                <tr>
+                                    <th>Princípio</th>
+                                    <th>Descrição</th>
+                                    <th>Referência</th>
+                                </tr>
+                                <tr>
+                                    <td>Dízimos e Ofertas</td>
+                                    <td>Fidelidade nas primícias</td>
+                                    <td>Ml 3:10</td>
+                                </tr>
+                                <tr>
+                                    <td>Planejamento</td>
+                                    <td>Sabedoria na administração</td>
+                                    <td>Lc 14:28</td>
+                                </tr>
+                                <tr>
+                                    <td>Trabalho diligente</td>
+                                    <td>Excelência como serviço</td>
+                                    <td>Ef 6:5</td>
+                                </tr>
+                                <tr>
+                                    <td>Evitar dívidas</td>
+                                    <td>Liberdade financeira</td>
+                                    <td>Pv 22:7</td>
+                                </tr>
+                                <tr>
+                                    <td>Economia</td>
+                                    <td>Poupança para o futuro</td>
+                                    <td>Pv 21:20</td>
+                                </tr>
+                                <tr>
+                                    <td>Investimento</td>
+                                    <td>Multiplicação dos recursos</td>
+                                    <td>Pv 14:24</td>
+                                </tr>
+                                <tr>
+                                    <td>Generosidade</td>
+                                    <td>Semear para colher</td>
+                                    <td>Lc 6:38</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 10 - Conclusão -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Jornada de Fé</h3>
+                </div>
+                <div class="card-body">
+                    <p>Quanto mais você se aproxima de Deus, mais forte sua fé se tornará. Persista, e Ele revelará Sua presença na sua vida!</p>
+                    
+                    <div class="final-message">
+                        <p><strong>Próximo Passo:</strong> Escolha UMA prática espiritual para implementar esta semana. Pequenos passos consistentes levam a grandes transformações.</p>
+                        <p class="quote">"Se vivemos no Espírito, andemos também no Espírito." (Gálatas 5:25)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seção 7 - Motivação (Original) -->
+        <div class="section-content" id="section7">
+            <h2 style="color: var(--motivation-color);">7. Quando a Motivação Falhar…</h2>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Lembre-se do "Porquê"</h3>
+                </div>
+                <div class="card-body">
+                    <p>Releia seus objetivos e a razão de querer alcançá-los. O propósito supera a falta de motivação.</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Como Reforçar Seu Porquê</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Escreva uma carta para seu "eu futuro"</li>
+                                <li>Crie um mantra pessoal (ex.: "Estem fazendo isso por...")</li>
+                                <li>Visualize o resultado final diariamente</li>
+                                <li>Converse com pessoas que já alcançaram o que você deseja</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Princípio do Passo Mínimo</h3>
+                </div>
+                <div class="card-body">
+                    <p>Se estiver desanimado, dê um passo mínimo (ex.: arrumar a cama, caminhar 10 min). Pequenas ações criam momentum.</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Exemplos de Passos Mínimos</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Ler 1 página de um livro</li>
+                                <li>Fazer 5 minutos de exercício</li>
+                                <li>Escrever 1 parágrafo do seu projeto</li>
+                                <li>Organizar 1 gaveta</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Busque Inspiração</h3>
+                </div>
+                <div class="card-body">
+                    <p>Assista a histórias de superação (ex.: Nick Vujicic, Jó da Bíblia) para renovar sua força interior.</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Fontes de Inspiração</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Biografias de pessoas que superaram adversidades</li>
+                                <li>Filmes baseados em histórias reais</li>
+                                <li>Depoimentos de transformação pessoal</li>
+                                <li>Conversas com mentores e pessoas sábias</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seção 8 - O Poder do Hábito (Original) -->
+        <div class="section-content" id="section8">
+            <h2 style="color: var(--habits-color);">8. O Poder do Hábito</h2>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Introdução: Como os Hábitos Funcionam</h3>
+                </div>
+                <div class="card-body">
+                    <p>O livro "O Poder do Hábito" de Charles Duhigg explora a ciência por trás da formação e mudança de hábitos. Duhigg apresenta o "Loop do Hábito", um ciclo neurológico que governa todos os hábitos, composto por três elementos:</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">O Loop do Hábito</div>
+                        </div>
+                        <div class="tip-content">
+                            <ol class="styled-list">
+                                <li><strong>Deixa (Trigger):</strong> O gatilho que inicia o comportamento</li>
+                                <li><strong>Rotina:</strong> O comportamento em si</li>
+                                <li><strong>Recompensa:</strong> O benefício que você obtém do comportamento</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Parte 1: Os Hábitos dos Indivíduos</h3>
+                </div>
+                <div class="card-body">
+                    <p>Duhigg explica como os hábitos se formam em nossos cérebros e como podemos transformá-los:</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Como Mudar um Hábito</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Identifique a rotina (o comportamento que quer mudar)</li>
+                                <li>Experimente com recompensas para descobrir o que realmente deseja</li>
+                                <li>Isole a deixa (o gatilho que inicia o hábito)</li>
+                                <li>Tenha um plano para substituir a rotina antiga por uma nova</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <p>O autor apresenta o conceito de "Pedra Angular" - hábitos que, quando mudados, podem desencadear transformações em outras áreas da vida.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Parte 2: Os Hábitos das Organizações Bem-Sucedidas</h3>
+                </div>
+                <div class="card-body">
+                    <p>Duhigg explora como as empresas usam o conhecimento dos hábitos:</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Hábitos Organizacionais</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li><strong>Hábitos de segurança:</strong> Como a Alcoa transformou sua cultura focando em um único hábito-chave</li>
+                                <li><strong>Hábitos de inovação:</strong> Como a Starbucks treina funcionários para hábitos de autocontrole</li>
+                                <li><strong>Hábitos de consumo:</strong> Como empresas usam dados para prever e influenciar comportamentos</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <p>O caso da Target prever gestantes baseado em mudanças de hábitos de compra é um dos exemplos mais marcantes.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Parte 3: Os Hábitos das Sociedades</h3>
+                </div>
+                <div class="card-body">
+                    <p>Como os movimentos sociais surgem a partir de hábitos compartilhados:</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Hábitos Sociais</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li><strong>Laços fracos:</strong> A importância das conexões superficiais na disseminação de ideias</li>
+                                <li><strong>Hábitos de movimento:</strong> Como o Movimento dos Direitos Civis foi impulsionado por hábitos sociais</li>
+                                <li><strong>Hábitos morais:</strong> Como padrões de comportamento podem criar mudanças duradouras</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <p>O livro examina como Rosa Parks e o boicote aos ônibus de Montgomery se beneficiaram de hábitos sociais existentes.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Conclusão: A Neuroplasticidade dos Hábitos</h3>
+                </div>
+                <div class="card-body">
+                    <p>Duhigg termina com uma mensagem poderosa sobre a capacidade de mudança:</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Princípios para Transformar Hábitos</div>
+                        </div>
+                        <div class="tip-content">
+                            <ol class="styled-list">
+                                <li>Acredite na possibilidade de mudança</li>
+                                <li>Use o conhecimento do Loop do Hábito conscientemente</li>
+                                <li>Comece com pequenas vitórias (small wins)</li>
+                                <li>Identifique hábitos angulares que podem catalisar outras mudanças</li>
+                                <li>Crie estruturas de apoio e responsabilidade</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <p>O livro demonstra que entender como os hábitos funcionam nos dá o poder de transformá-los e, consequentemente, transformar nossas vidas.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Exercícios Práticos</h3>
+                </div>
+                <div class="card-body">
+                    <p>Aplique os conceitos do livro em sua vida:</p>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Diário dos Hábitos</div>
+                        </div>
+                        <div class="tip-content">
+                            <p>Por 3 dias, registre:</p>
+                            <ul class="styled-list">
+                                <li>Um hábito que deseja mudar</li>
+                                <li>O que acontece imediatamente antes (deixa)</li>
+                                <li>A rotina em si</li>
+                                <li>A recompensa que obtém</li>
+                            </ul>
+                            <p>Depois, experimente diferentes recompensas para descobrir o que realmente deseja.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Substituição de Hábitos</div>
+                        </div>
+                        <div class="tip-content">
+                            <p>Para mudar um hábito indesejado:</p>
+                            <ol class="styled-list">
+                                <li>Mantenha a mesma deixa e recompensa</li>
+                                <li>Substitua apenas a rotina por um comportamento mais saudável</li>
+                                <li>Repita consistentemente por 3-4 semanas</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seção 9 - O Alquimista (Nova seção) -->
+        <div class="section-content" id="section9">
+            <h2 style="color: var(--alchemist-color);">9. O Alquimista</h2>
+            
+            <!-- Card 1 - A Lenda Pessoal -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>A Lenda Pessoal</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Conceito Central</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="pillars-container">
+                                <div class="pillar">
+                                    <h4>✨ Propósito Único</h4>
+                                    <p>Cada pessoa tem uma missão específica (a "Lenda Pessoal") a ser realizada</p>
+                                </div>
+                                <div class="pillar">
+                                    <h4>⚠️ Obstáculos Comuns</h4>
+                                    <p>Medo, conformismo e pressões sociais podem desviar do caminho</p>
+                                </div>
+                                <div class="pillar">
+                                    <h4>🚀 Chamado à Ação</h4>
+                                    <p>Escutar os sinais do universo e perseguir os sonhos com coragem</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Como Descobrir Sua Lenda Pessoal</div>
+                        </div>
+                        <div class="tip-content">
+                            <ol class="styled-list">
+                                <li>Relembre seus sonhos de infância</li>
+                                <li>Identifique atividades que fazem você perder a noção do tempo</li>
+                                <li>Observe quais problemas você gosta de resolver</li>
+                                <li>Imagine o legado que deseja deixar</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 - A Linguagem do Universo -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>A Linguagem do Universo (Omens)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Princípios dos Sinais</div>
+                        </div>
+                        <div class="tip-content">
+                            <table class="mindset-table">
+                                <tr>
+                                    <th>Conceito</th>
+                                    <th>Explicação</th>
+                                    <th>Aplicação</th>
+                                </tr>
+                                <tr>
+                                    <td>O universo conspira</td>
+                                    <td>Tudo conspira a favor de quem busca sua Lenda Pessoal</td>
+                                    <td>Confie no processo</td>
+                                </tr>
+                                <tr>
+                                    <td>Sinais (Omens)</td>
+                                    <td>Mensagens do universo guiando seu caminho</td>
+                                    <td>Desenvolva atenção plena</td>
+                                </tr>
+                                <tr>
+                                    <td>Conexão espiritual</td>
+                                    <td>Ponte entre mundo material e espiritual</td>
+                                    <td>Cultive a intuição</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Como Reconhecer os Sinais</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="benefits-list styled-list">
+                                <li>🔍 <strong>Coincidências significativas:</strong> Padrões que se repetem</li>
+                                <li>💡 <strong>Insights repentinos:</strong> Ideias que surgem sem esforço</li>
+                                <li>❤️ <strong>Emoções intensas:</strong> Respostas emocionais a situações</li>
+                                <li>🔄 <strong>Situações recorrentes:</strong> Lições que se repetem</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 - O Medo do Fracasso -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>O Medo do Fracasso e a Necessidade de Agir</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Enfrentando o Medo</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="purpose-map">
+                                <div class="map-item">
+                                    <h4>💭 Medo Antecipado</h4>
+                                    <p>"O medo do sofrimento é pior que o próprio sofrimento"</p>
+                                </div>
+                                <div class="map-item">
+                                    <h4>⚡ Poder da Ação</h4>
+                                    <p>Ação supera a indecisão; a jornada transforma</p>
+                                </div>
+                                <div class="map-item">
+                                    <h4>🐑 Exemplo de Santiago</h4>
+                                    <p>Abandonou a segurança do rebanho para buscar seu tesouro</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Exercício Prático: Diário do Medo</div>
+                        </div>
+                        <div class="tip-content">
+                            <ol class="styled-list">
+                                <li>Liste 3 medos relacionados à sua Lenda Pessoal</li>
+                                <li>Para cada um, imagine o pior cenário possível</li>
+                                <li>Descreva como você lidaria com cada situação</li>
+                                <li>Identifique o que você ganharia enfrentando esses medos</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 - O Princípio do Foco -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>O Princípio do Foco e da Persistência (Maktub)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Maktub - "Está Escrito"</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Confiança de que o destino está alinhado com a jornada</li>
+                                <li>Persistência diante de desafios (crise no oásis, deserto, pirâmides)</li>
+                                <li>Lembrar: a felicidade está no processo, não apenas no objetivo</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Técnica do Foco Diário</div>
+                        </div>
+                        <div class="tip-content">
+                            <ol class="morning-routine styled-list">
+                                <li>🌅 <strong>Manhã:</strong> Visualize seu objetivo como já alcançado</li>
+                                <li>📝 <strong>Tarde:</strong> Aja em uma pequena tarefa alinhada à sua Lenda</li>
+                                <li>🌙 <strong>Noite:</strong> Agradeça pelo progresso, mesmo que mínimo</li>
+                                <li>🔄 <strong>Semanal:</strong> Revise e ajuste seu caminho conforme os sinais</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 - Sabedoria da Transformação -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>A Sabedoria da Transformação e do Autoconhecimento</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">O Processo Alquímico</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="tools-grid">
+                                <div class="tool">
+                                    <h4>⚗️ Alquimista Interior</h4>
+                                    <p>Transmutar o chumbo (medos) em ouro (potencial)</p>
+                                </div>
+                                <div class="tool">
+                                    <h4>💎 O Tesouro Interior</h4>
+                                    <p>"O tesouro está onde você deixou seu coração"</p>
+                                </div>
+                                <div class="tool">
+                                    <h4>🔮 Pergunta Poderosa</h4>
+                                    <p>"O que você sempre quis fazer?" como guia</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Exercício de Autoconhecimento</div>
+                        </div>
+                        <div class="tip-content">
+                            <p>Complete as frases:</p>
+                            <ul class="styled-list">
+                                <li>Se eu não tivesse medo, eu...</li>
+                                <li>Minha versão mais corajosa de mim mesmo...</li>
+                                <li>O que meu eu de 80 anos me diria para fazer agora é...</li>
+                                <li>Se eu soubesse que não iria falhar, eu tentaria...</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 - Amor Universal -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>O Amor Universal e a Unidade</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Lições sobre Amor</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="case-studies">
+                                <div class="case">
+                                    <h4>💞 Amor sem Posse</h4>
+                                    <p>História de Fátima: amor que liberta em vez de aprisionar</p>
+                                    <p><em>"Se você ama alguém, deixe-o livre"</em></p>
+                                </div>
+                                <div class="case">
+                                    <h4>🌍 Alma do Mundo</h4>
+                                    <p>Tudo está interligado - conexão com natureza e outros</p>
+                                    <p><em>"Todas as coisas são uma só"</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 - Aplicação Prática -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Aplicação Prática para Crescimento Pessoal</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Passos Concretos</div>
+                        </div>
+                        <div class="tip-content">
+                            <table class="mindset-table">
+                                <tr>
+                                    <th>Passo</th>
+                                    <th>Ação</th>
+                                    <th>Ferramenta</th>
+                                </tr>
+                                <tr>
+                                    <td>1. Definir Lenda</td>
+                                    <td>Identificar paixões e objetivos autênticos</td>
+                                    <td>Diário de autoconhecimento</td>
+                                </tr>
+                                <tr>
+                                    <td>2. Escutar Sinais</td>
+                                    <td>Praticar atenção plena aos omens</td>
+                                    <td>Registro de coincidências</td>
+                                </tr>
+                                <tr>
+                                    <td>3. Enfrentar Medos</td>
+                                    <td>Ação progressiva apesar das incertezas</td>
+                                    <td>Lista de pequenos desafios</td>
+                                </tr>
+                                <tr>
+                                    <td>4. Manter Foco</td>
+                                    <td>Persistência com propósito (Maktub)</td>
+                                    <td>Rituais diários de reforço</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="final-message">
+                        <p><strong>Lição Final:</strong> O Alquimista ensina que o crescimento pessoal está na coragem de buscar seu destino, na sabedoria de aprender com a jornada e na fé de que o universo apoia quem se move em direção ao seu propósito.</p>
+                        <p class="quote">"Quando você quer algo, todo o universo conspira para que você realize seu desejo." - Paulo Coelho, O Alquimista</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seção 10 - Longevidade (Nova seção) -->
+        <div class="section-content" id="section10">
+            <h2 style="color: var(--longevity-color);">10. Longevidade e Vida Saudável</h2>
+            
+            <!-- Card 1 - Fundamentos -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Fundamentos da Longevidade</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Por que algumas pessoas vivem mais?</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="pillars-container">
+                                <div class="pillar">
+                                    <h4>🧬 Genética (20-30%)</h4>
+                                    <p>Influencia, mas não determina totalmente</p>
+                                </div>
+                                <div class="pillar">
+                                    <h4>🏃‍♂️ Estilo de vida (70-80%)</h4>
+                                    <p>Dieta, exercícios, sono e gerenciamento de estresse são decisivos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Expectativa de Vida vs. Expectativa de Saúde</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Não basta viver muito, é preciso viver bem (sem doenças crônicas)</li>
+                                <li>Objetivo: Aumentar os "healthspan" (anos de vida saudável)</li>
+                                <li>Pessoas em zonas azuis (regiões com maior longevidade) mantêm autonomia até idades avançadas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 - Alimentação -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Alimentação para Longevidade</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Dietas Comprovadas para Longevidade</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="purpose-map">
+                                <div class="map-item">
+                                    <h4>🍇 Dieta Mediterrânea</h4>
+                                    <p>Azeite, peixes, nozes, vegetais</p>
+                                </div>
+                                <div class="map-item">
+                                    <h4>🍠 Dieta de Okinawa</h4>
+                                    <p>Batata-doce, peixe, tofu, pouco açúcar</p>
+                                </div>
+                                <div class="map-item">
+                                    <h4>⏱️ Jejum Intermitente</h4>
+                                    <p>Reduz inflamação e melhora autofagia</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Alimentos-Chave para Viver Mais</div>
+                        </div>
+                        <div class="tip-content">
+                            <table class="mindset-table">
+                                <tr>
+                                    <th>Categoria</th>
+                                    <th>Alimentos</th>
+                                    <th>Benefícios</th>
+                                </tr>
+                                <tr>
+                                    <td>Antioxidantes</td>
+                                    <td>Açaí, mirtilo, cacau, chá verde</td>
+                                    <td>Combatem radicais livres</td>
+                                </tr>
+                                <tr>
+                                    <td>Gorduras Boas</td>
+                                    <td>Azeite, abacate, salmão, nozes</td>
+                                    <td>Protegem coração e cérebro</td>
+                                </tr>
+                                <tr>
+                                    <td>Fibras</td>
+                                    <td>Aveia, brócolis, lentilhas</td>
+                                    <td>Melhoram microbiota intestinal</td>
+                                </tr>
+                                <tr>
+                                    <td>Proteínas Magras</td>
+                                    <td>Peixe, frango, tofu, ovos</td>
+                                    <td>Preservam massa muscular</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Alimentos que Aceleram o Envelhecimento</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Açúcar refinado</li>
+                                <li>Carboidratos ultraprocessados (farinha branca)</li>
+                                <li>Carnes processadas (bacon, salsicha)</li>
+                                <li>Gorduras trans (margarina, fast-food)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 - Exercícios -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Movimento & Exercícios</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Treino Ideal para Longevidade</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="tools-grid">
+                                <div class="tool">
+                                    <h4>🏋️‍♂️ Força (2-3x/semana)</h4>
+                                    <p>Previne sarcopenia (perda muscular)</p>
+                                </div>
+                                <div class="tool">
+                                    <h4>🏃‍♂️ Cardio (150 min/semana)</h4>
+                                    <p>Caminhada rápida, natação, ciclismo</p>
+                                </div>
+                                <div class="tool">
+                                    <h4>🧘‍♀️ Mobilidade/Flexibilidade</h4>
+                                    <p>Yoga, alongamento</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Movimento Não-Exercício (NEAT)</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Fique mais em pé, caminhe, suba escadas</li>
+                                <li>Populações longevas são naturalmente ativas (ex: agricultores em Icária)</li>
+                                <li>NEAT pode queimar até 2.000 calorias extras por dia</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 - Sono -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Sono & Recuperação</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Regras do Sono Longevo</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Dormir 7-9h por noite (sono profundo é essencial para reparo celular)</li>
+                                <li>Criar rotina: Deitar e acordar no mesmo horário</li>
+                                <li>Evitar telas 1h antes de dormir (a luz azul inibe a melatonina)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Técnicas para Melhorar o Sono</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="purpose-map">
+                                <div class="map-item">
+                                    <h4>☀️ Exposição ao sol pela manhã</h4>
+                                    <p>Regula o ciclo circadiano</p>
+                                </div>
+                                <div class="map-item">
+                                    <h4>🌙 Quarto escuro, fresco e silencioso</h4>
+                                    <p>Ambiente ideal para sono reparador</p>
+                                </div>
+                                <div class="map-item">
+                                    <h4>🍵 Chás calmantes</h4>
+                                    <p>Camomila, valeriana</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 - Estresse -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Controle do Estresse & Saúde Mental</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Por que o Estresse Envelhece?</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Aumenta cortisol → inflamação → dano celular</li>
+                                <li>Encurta os telômeros (parte do DNA ligada ao envelhecimento)</li>
+                                <li>Estresse crônico pode reduzir expectativa de vida em até 10 anos</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Estratégias Antiestresse</div>
+                        </div>
+                        <div class="tip-content">
+                            <div class="case-studies">
+                                <div class="case">
+                                    <h4>🧘 Meditação (mindfulness)</h4>
+                                    <p>Reduz ansiedade e melhora foco</p>
+                                </div>
+                                <div class="case">
+                                    <h4>🌬️ Respiração profunda (4-7-8)</h4>
+                                    <p>Ativa sistema parassimpático</p>
+                                </div>
+                                <div class="case">
+                                    <h4>👥 Vida social ativa</h4>
+                                    <p>Solidão é tão danosa quanto fumar 15 cigarros/dia</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 - Ciência -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Avanços Científicos em Longevidade</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Suplementos Promissores (com aval médico)</div>
+                        </div>
+                        <div class="tip-content">
+                            <table class="mindset-table">
+                                <tr>
+                                    <th>Suplemento</th>
+                                    <th>Fonte</th>
+                                    <th>Benefício</th>
+                                </tr>
+                                <tr>
+                                    <td>Resveratrol</td>
+                                    <td>Uvas vermelhas</td>
+                                    <td>Ativa genes da longevidade (SIRT1)</td>
+                                </tr>
+                                <tr>
+                                    <td>NAD+ (NMN/NR)</td>
+                                    <td>Precursor de NAD+</td>
+                                    <td>Melhora energia celular</td>
+                                </tr>
+                                <tr>
+                                    <td>Ômega-3</td>
+                                    <td>Peixes gordurosos</td>
+                                    <td>Protege cérebro e coração</td>
+                                </tr>
+                                <tr>
+                                    <td>Vitamina D</td>
+                                    <td>Sol, suplementos</td>
+                                    <td>Fortalece imunidade e ossos</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Check-ups Essenciais (Prevenção)</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Exames de sangue (glicose, colesterol, vitamina D)</li>
+                                <li>Rastreamento de câncer (mama, próstata, cólon)</li>
+                                <li>Monitoramento da pressão arterial</li>
+                                <li>Exames de densidade óssea (após os 50 anos)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 - Rotina -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Rotina Diária de Longevidade</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">🌅 Manhã</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Exposição ao sol (10-15 min)</li>
+                                <li>Café da manhã rico em proteínas e gorduras boas</li>
+                                <li>Movimento leve (caminhada, alongamento)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">🌞 Dia</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Almoço colorido (vegetais + proteína)</li>
+                                <li>Caminhada pós-almoço (melhora digestão)</li>
+                                <li>Hidratação (água, chás)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">🌙 Noite</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="styled-list">
+                                <li>Jantar leve (evitar excesso de carboidratos)</li>
+                                <li>Desligar telas 1h antes de dormir</li>
+                                <li>Rotina relaxante (leitura, meditação)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8 - Conclusão -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>O Segredo da Longevidade</h3>
+                </div>
+                <div class="card-body">
+                    <div class="tip-box">
+                        <div class="tip-header">
+                            <div class="tip-title">Viver mais e melhor depende de:</div>
+                        </div>
+                        <div class="tip-content">
+                            <ul class="benefits-list styled-list">
+                                <li>✅ Nutrição inteligente (comida de verdade, pouco processado)</li>
+                                <li>✅ Movimento constante (força + cardio + NEAT)</li>
+                                <li>✅ Sono reparador (7-9h, consistente)</li>
+                                <li>✅ Mente equilibrada (controle do estresse, propósito)</li>
+                                <li>✅ Prevenção (check-ups, suplementação estratégica)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="final-message">
+                        <p><strong>Próximos Passos:</strong></p>
+                        <ol class="styled-list">
+                            <li>Comece pequeno – Adicione 1 hábito novo por semana</li>
+                            <li>Monitore progresso – Exames, diário de saúde</li>
+                            <li>Ajuste conforme necessário – Cada corpo responde diferente</li>
+                        </ol>
+                        <p class="quote">"A longevidade é uma maratona, não um sprint. Pequenas escolhas diárias criam uma vida longa e vibrante."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-message" id="rotatingQuotes">
+                <span>"Você é mais forte do que pensa e mais capaz do que imagina."</span>
+                <span>"O futuro pertence àqueles que acreditam na belleza de seus sonhos."</span>
+                <span>"Acredite que você pode e você já está no meio do caminho."</span>
+                <span>"A maior glória não está em nunca cair, mas em se levantar a cada queda."</span>
+                <span>"A persistência realiza o impossível."</span>
+                <span>"Transforme sua vida um dia de cada vez"</span>
+            </div>
+            <p>© 2023 - Todos os direitos reservados</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Modo Escuro/Claro
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeIcon = document.querySelector('.theme-icon');
+        
+        // Verificar preferência do usuário ou localStorage
+        const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (localStorage.getItem('darkMode') === 'enabled' || (localStorage.getItem('darkMode') === null && prefersDarkMode)) {
+            body.classList.add('dark-mode');
+            themeToggle.checked = true;
+            themeIcon.textContent = '☀️';
+        }
+        
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'enabled');
+                themeIcon.textContent = '☀️';
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'disabled');
+                themeIcon.textContent = '🌙';
+            }
+        });
+
+        // Elementos do DOM
+        const lottieIcon = document.getElementById('lottie-animation');
+        const sideMenu = document.getElementById('sideMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const sectionContents = document.querySelectorAll('.section-content');
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const quotes = document.querySelectorAll('#rotatingQuotes span');
+
+        // Estado do menu
+        let menuOpen = false;
+        let currentSection = null;
+
+        // Configuração da animação Lottie
+        const anim = lottie.loadAnimation({
+            container: lottieIcon,
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://assets1.lottiefiles.com/packages/lf20_raiw2hpe.json'
+        });
+
+        // Função para controlar o scroll do body quando o menu está aberto
+        function toggleBodyScroll(enable) {
+            if (enable) {
+                document.body.style.position = '';
+                document.body.style.overflow = '';
+                document.body.style.touchAction = '';
+                document.body.style.width = '';
+                
+                if (window.innerWidth <= 768) {
+                    const scrollY = document.body.style.top;
+                    window.scrollTo(0, parseInt(scrollY || '0') * -1);
+                }
+            } else {
+                document.body.style.position = 'fixed';
+                document.body.style.overflow = 'hidden';
+                document.body.style.touchAction = 'none';
+                
+                if (window.innerWidth <= 768) {
+                    document.body.style.top = `-${window.scrollY}px`;
+                    document.body.style.width = '100%';
+                }
+            }
+        }
+
+        // Abrir/fechar menu lateral
+        lottieIcon.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        // Fechar menu ao clicar no overlay
+        menuOverlay.addEventListener('click', function() {
+            toggleMenu();
+        });
+
+        // Navegar para seções
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionNum = this.getAttribute('data-section');
+                currentSection = sectionNum;
+                
+                toggleMenu();
+                
+                setTimeout(() => {
+                    sectionContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    welcomeMessage.style.display = 'none';
+                    
+                    const targetSection = document.getElementById(`section${sectionNum}`);
+                    targetSection.classList.add('active');
+                    
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }, 50);
+                }, 300);
+            });
+        });
+
+        // Função para alternar o menu
+        function toggleMenu() {
+            menuOpen = !menuOpen;
+            
+            if (menuOpen) {
+                sideMenu.classList.add('active');
+                menuOverlay.classList.add('active');
+                lottieIcon.classList.add('active');
+                toggleBodyScroll(false);
+                sideMenu.style.transform = 'translateX(300px)';
+            } else {
+                sideMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                lottieIcon.classList.remove('active');
+                toggleBodyScroll(true);
+                sideMenu.style.transform = '';
+            }
+        }
+
+        // Fechar menu ao pressionar ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && menuOpen) {
+                toggleMenu();
+            }
+        });
+
+        // Rotação de frases no footer com animações melhoradas
+        let currentQuoteIndex = 0;
+        
+        function showNextQuote() {
+            // Remove a classe active de todas as frases
+            quotes.forEach(quote => {
+                quote.classList.remove('active');
+                quote.style.animation = 'quoteOut 0.8s forwards';
+            });
+            
+            // Aguarda a animação de saída terminar
+            setTimeout(() => {
+                // Remove qualquer animação restante
+                quotes.forEach(quote => {
+                    quote.style.animation = '';
+                });
+                
+                // Avança para a próxima frase (ou volta para a primeira)
+                currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+                
+                // Adiciona a classe active e animação de entrada para a próxima frase
+                quotes[currentQuoteIndex].classList.add('active');
+                quotes[currentQuoteIndex].style.animation = 'quoteIn 0.8s forwards';
+            }, 800);
+        }
+
+        // Mostra a primeira frase com animação
+        quotes[0].classList.add('active');
+        quotes[0].style.animation = 'quoteIn 0.8s forwards';
+        
+        // Configura o intervalo para trocar as frases
+        const quoteInterval = setInterval(showNextQuote, 5000);
+
+        // Ajustar layout dinamicamente
+        function adjustLayout() {
+            const isMobile = window.innerWidth <= 768;
+            const header = document.querySelector('header');
+            
+            if (isMobile) {
+                header.style.paddingTop = '3.5rem';
+                header.style.paddingBottom = '1rem';
+                
+                const iconSize = Math.min(window.innerWidth * 0.1, 40);
+                document.querySelector('.knowledge-icon-container').style.width = `${iconSize}px`;
+                document.querySelector('.knowledge-icon-container').style.height = `${iconSize}px`;
+                
+                const iconMargin = Math.min(window.innerWidth * 0.03, 10);
+                document.querySelector('.knowledge-icon-container').style.top = `${iconMargin}px`;
+                document.querySelector('.knowledge-icon-container').style.left = `${iconMargin}px`;
+                document.querySelector('.theme-switcher').style.top = `${iconMargin}px`;
+                document.querySelector('.theme-switcher').style.right = `${iconMargin}px`;
+            } else {
+                header.style.paddingTop = '2.5rem';
+                header.style.paddingBottom = '1.5rem';
+            }
+        }
+
+        // Efeitos de hover melhorados
+        document.querySelectorAll('.card, .pillar, .tool, .map-item, .case').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                element.style.transform = 'translateY(-3px)';
+                element.style.boxShadow = '0 6px 12px rgba(0,0,0,0.15)';
+            });
+            element.addEventListener('mouseleave', () => {
+                element.style.transform = '';
+                element.style.boxShadow = '';
+            });
+        });
+
+        // Melhor feedback visual para interações
+        document.querySelectorAll('a, button, .menu-tab, .theme-label').forEach(element => {
+            element.addEventListener('focus', () => {
+                element.style.outline = '2px solid var(--accent-color)';
+                element.style.outlineOffset = '2px';
+            });
+            element.addEventListener('blur', () => {
+                element.style.outline = '';
+            });
+        });
+
+        // Ajustar layout inicialmente e em redimensionamentos
+        adjustLayout();
+        window.addEventListener('resize', adjustLayout);
+        window.addEventListener('orientationchange', adjustLayout);
+    </script>
+</body>
+</html>
